@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Raisin API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -19,9 +19,9 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Raisin API 2020 Vision! Imagining a world where we have a badarse API that makes engineers happy to come to work and their peers envious.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This demo is just using Shell but you can add Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
@@ -64,6 +64,100 @@ Kittn expects for the API key to be included in all API requests to the server i
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
+
+# Reference account
+A `reference account` is an account linked to the customer which has been verified by Raisin. A customer can only transfer funds from their Raisin Bank account to a `reference account`.
+
+## Create a reference account
+All customers require a reference account to be set before they can fund their Raisin Bank account.
+
+> Example Request:
+
+```shell
+curl -X POST /open_api/v2/customer/account/reference/initial
+     -H "Authorization: Bearer <your api token>"
+```
+
+> Example Response:
+
+```json
+{
+  "iban" : "DE73503302002041000000",
+  "account_holder" : "Max Mustermann",
+  "bic_bank_code" : "NTSBDEB1XXX",
+  "bank_name" : "N26",
+  "account_number" : "string",
+  "sort_code" : "string"
+}
+```
+### Request
+
+`POST /open_api/v2/customer/account/reference/initial`
+
+### Response
+
+Parameter | Description | Format
+--------- | ------- | -----------
+iban | Reference account IBAN | string
+account_holder | The name of the account holders | string
+bic_bank_code | Referene account BIC | string
+account_number | UK account number | string
+sort_code | UK sort code | string
+
+
+<aside class="success">
+Remember - You must first log in as a customer before you can set a reference account.
+</aside>
+
+## List
+List of reference accounts belonging to a customer.
+
+<aside class="warning">
+Not live yet. Wait for a future version!
+</aside>
+
+> Example Request:
+
+```shell
+curl -X GET /open_api/v2/customer/account/reference
+     -H "Authorization: Bearer <your api token>"
+```
+
+> Example Response:
+
+```json
+[
+  {
+  "iban" : "DE73503302002041222222",
+  "account_holder" : "Max Mustermann",
+  "bic_bank_code" : "DEUBDEB1YYY",
+  "bank_name" : "Deutsche Bank",
+  "account_number" : "string",
+  "sort_code" : "string"
+  },
+  {
+  "iban" : "DE73503302002041000000",
+  "account_holder" : "Max Mustermann",
+  "bic_bank_code" : "NTSBDEB1XXX",
+  "bank_name" : "N26",
+  "account_number" : "string",
+  "sort_code" : "string"
+  }
+]
+```
+### Request
+
+`GET /open_api/v2/customer/account/reference/`
+
+### Response
+
+Parameter | Description | Format
+--------- | ------- | -----------
+iban | Reference account IBAN | string
+account_holder | The name of the account holders | string
+bic_bank_code | Referene account BIC | string
+account_number | UK account number | string
+sort_code | UK sort code | string
 
 # Kittens
 
